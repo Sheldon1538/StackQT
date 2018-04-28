@@ -34,7 +34,7 @@ void MainWindow::on_pushStackItemBtn_clicked() // Push item to the stack.
     }
 }
 
-void MainWindow::on_popStackItemBtn_clicked()
+void MainWindow::on_popStackItemBtn_clicked() // Pop stack item out of the stack.
 {
     if (mainStack.checkIfEmpty() == true) {
         ui->poppedItemLabel->setText("Stack is empty!");
