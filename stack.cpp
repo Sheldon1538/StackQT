@@ -28,10 +28,13 @@
     }
 
     int Stack::popStackItem() { // Popping item out of the stack. Returns popped value.
-        int _returnValue = stackArray[0];
+        int _returnValue = stackArray[currentItemIndex-1];
+        stackArray[currentItemIndex-1] = 0;
+        /* // Uncomment for queue.
         for (int i = 0; i < sizeOfTheStack; i++) {
             stackArray[i] = stackArray[i+1];
         }
+        */
         currentItemIndex = currentItemIndex - 1;
         return _returnValue;
     }
