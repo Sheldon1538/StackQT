@@ -17,7 +17,9 @@ class Stack
     private:
         int sizeOfTheStack; // Size of the stack.
         int currentItemIndex; // Index of the current stack item.
-        int stackArray[10]; // Representing queue as an array.
+        int stackArray[10]; // Representing stack as an array.
+        int currentProgramMode; // Current program mode. 0 - stack, 1 - queue.
+        QString modsArray[2]; // List of program mods.
     public:
         Stack(); // Initialize a class.
 
@@ -30,6 +32,14 @@ class Stack
         bool checkIfEmpty(); // Returns true if stack is emoty.
 
         bool checkIfIntegers(QString _inputValue); // Returns true if there is an integer value in input field.
+
+        int checkCurrentMode(); // Returns 0 if current mode stack; returns 1 if current mode - queue.
+
+        void setCurrentMode(int _programType); // Set new program mode, 0 - stack, 1 - queue.
+
+        QString getStringMode(int _index); // Get name of the mode.
+
+        void resetData(); // Reset data when the mode is changed.
 
 }; // stack class
 

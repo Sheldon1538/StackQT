@@ -12,9 +12,13 @@
 #include <QDebug>
 
 
+
     Stack::Stack() { // Initialize a class object.
         sizeOfTheStack = 10;
         currentItemIndex = 0;
+        currentProgramMode = 0;
+        modsArray[0] = "Stack";
+        modsArray[1] = "Queue";
         }
 
 
@@ -28,14 +32,28 @@
     }
 
     int Stack::popStackItem() { // Popping item out of the stack. Returns popped value.
-        int _returnValue = stackArray[currentItemIndex-1];
-        stackArray[currentItemIndex-1] = 0;
-        /* // Uncomment for queue.
-        for (int i = 0; i < sizeOfTheStack; i++) {
-            stackArray[i] = stackArray[i+1];
+        int _returnValue;
+        switch (currentProgramMode) {
+        case 0: {
+            _returnValue = stackArray[currentItemIndex-1];
+            stackArray[currentItemIndex-1] = 0;
+            currentItemIndex = currentItemIndex - 1;
+            break;
         }
-        */
-        currentItemIndex = currentItemIndex - 1;
+
+        case 1: {
+            _returnValue = stackArray[0];
+            for (int i = 0; i < sizeOfTheStack; i++) {
+                stackArray[i] = stackArray[i+1];
+            }
+            currentItemIndex = currentItemIndex - 1;
+            break;
+        }
+
+        default: {
+            break;
+        }
+        }
         return _returnValue;
     }
 
@@ -59,6 +77,26 @@
             _returnValue = true;
         }
         return _returnValue;
+    }
+
+    int Stack::checkCurrentMode() { // Returns 0 if current mode stack; returns 1 if current mode - queue.
+        return currentProgramMode;
+    }
+
+    void Stack::setCurrentMode(int _programType) { // Set new program mode, 0 - stack, 1 - queue.
+        if ((_programType == 0) || (_programType == 1)) {
+             currentProgramMode = _programType;
+        } else {
+            qDebug("Invalid data.");
+        }
+    }
+
+    QString Stack::getStringMode(int _index) {
+        return modsArray[_index];
+    }
+
+    void Stack::resetData() {
+        currentItemIndex = 0;
     }
 
     Stack mainStack;
